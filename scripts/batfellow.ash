@@ -1,6 +1,8 @@
 script "batfellow.ash";
 since r17264;
 
+#	https://github.com/Loathing-Associates-Scripting-Society/batfellow/blob/master/scripts/batfellow.ash
+#
 #	Thanks to ungawa (#404576) for providing a starting point for this script!
 #	Thanss to lightwolf (#61661) for the layout of Kickball Fellow (http://alliancefromhell.com/viewtopic.php?f=1&p=91032)
 #
@@ -757,7 +759,6 @@ int batGoalIndex(item goal)
 	}
 	return -1;
 }
-
 item convertBatfellow(string goal)
 {
 	item retval = to_item(goal);
@@ -767,17 +768,25 @@ item convertBatfellow(string goal)
 	}
 	switch(goal.to_int())
 	{
-	case 1:		retval = $item[Kudzu Salad];									break;
-	case 2:		retval = $item[Mansquito Serum];								break;
-	case 3:		retval = $item[Miss Graves' Vermouth];							break;
-	case 4:		retval = $item[The Plumber's Mushroom Stew];					break;
-	case 5:		retval = $item[The Author's Ink];								break;
-	case 6:		retval = $item[The Mad Liquor];									break;
-	case 7:		retval = $item[Doc Clock's Thyme Cocktail];					break;
-	case 8:		retval = $item[Mr. Burnsger];									break;
-	case 9:		retval = $item[The Inquisitor's Unidentifiable Object];		break;
+		case 1:		retval = $item[Kudzu Salad];
+					break;
+		case 2:		retval = $item[Mansquito Serum];
+					break;
+		case 3:		retval = $item[Miss Graves' Vermouth];
+					break;
+		case 4:		retval = $item[The Plumber's Mushroom Stew];
+					break;
+		case 5:		retval = $item[The Author's Ink];
+					break;
+		case 6:		retval = $item[The Mad Liquor];
+					break;
+		case 7:		retval = $item[Doc Clock's Thyme Cocktail];
+					break;
+		case 8:		retval = $item[Mr. Burnsger];
+					break;
+		case 9:		retval = $item[The Inquisitor's Unidentifiable Object];
+					break;
 	}
-
 	if($items[Kudzu Salad, Mansquito Serum, Miss Graves' Vermouth, The Plumber's Mushroom Stew, The Author's Ink, The Mad Liquor, Doc Clock's Thyme Cocktail, Mr. Burnsger, The Inquisitor's Unidentifiable Object] contains retval)
 	{
 		return retval;
@@ -792,12 +801,15 @@ void endBatFellow()
 
 boolean main(string goal)
 {
+    cli_execute("set abortOnChoiceWhenNotInChoice = false");
+    cli_execute("refresh all");
+
 	item toGet = convertBatfellow(goal);
 	if(toGet == $item[none])
 	{
 		abort("Desired Item could not be solved for. Please try again.");
 	}
-
+    cli_execute("refresh all");
 	return batfellow(toGet);
 }
 
@@ -823,21 +835,19 @@ int batProgressIndex(int index, string page)
 	{
 		return -1;
 	}
-
 	string goal = "";
 	switch(index)
 	{
-	case 0:		goal = "Kudzu";				break;
-	case 1:		goal = "Mansquito";			break;
-	case 2:		goal = "Miss Graves";		break;
-	case 3:		goal = "The Plumber";		break;
-	case 4:		goal = "The Author";		break;
-	case 5:		goal = "The Mad-Libber";	break;
-	case 6:		goal = "Doc Clock";			break;
-	case 7:		goal = "Mr. Burns";			break;
-	case 8:		goal = "The Inquisitor";	break;
+		case 0:		goal = "Kudzu";				break;
+		case 1:		goal = "Mansquito";			break;
+		case 2:		goal = "Miss Graves";		break;
+		case 3:		goal = "The Plumber";		break;
+		case 4:		goal = "The Author";		break;
+		case 5:		goal = "The Mad-Libber";	break;
+		case 6:		goal = "Doc Clock";			break;
+		case 7:		goal = "Mr. Burns";			break;
+		case 8:		goal = "The Inquisitor";	break;
 	}
-
 	if(page == "")
 	{
 		page = visit_url("charpane.php");
@@ -861,3 +871,4 @@ Snarfblat: 461/462/463 are the dead zones
 473: Jokester
 
 */
+
